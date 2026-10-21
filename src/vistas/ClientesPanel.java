@@ -106,10 +106,13 @@ public class ClientesPanel extends JPanel {
         nuevo.addActionListener(e -> limpiar());
         JButton guardar = new JButton("Guardar");
         guardar.addActionListener(e -> guardar());
+        JButton actualizar = new JButton("Actualizar cliente");
+        actualizar.addActionListener(e -> actualizarSeleccionado());
         JButton eliminar = new JButton("Eliminar");
         eliminar.addActionListener(e -> eliminar());
         acciones.add(nuevo);
         acciones.add(guardar);
+        acciones.add(actualizar);
         acciones.add(eliminar);
         envoltura.add(acciones, BorderLayout.SOUTH);
         return envoltura;
@@ -186,6 +189,14 @@ public class ClientesPanel extends JPanel {
             mostrarError(MensajesSQL.describir(
                     "No se pudo eliminar el cliente. Puede tener ventas relacionadas", ex));
         }
+    }
+
+    private void actualizarSeleccionado() {
+        if (tabla.getSelectedRow() < 0) {
+            mostrarError("Seleccione un cliente para actualizar.");
+            return;
+        }
+        guardar();
     }
 
     private void cargarSeleccion() {

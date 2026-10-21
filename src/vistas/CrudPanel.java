@@ -116,11 +116,14 @@ public class CrudPanel extends JPanel {
         limpiar.addActionListener(e -> limpiar());
         JButton guardar = new JButton("Guardar");
         guardar.addActionListener(e -> guardar());
+        JButton modificar = new JButton("Actualizar registro");
+        modificar.addActionListener(e -> actualizarSeleccionado());
         JButton eliminar = new JButton("Eliminar");
         eliminar.addActionListener(e -> eliminarFisico());
         JButton actualizar = new JButton("Recargar lista");
         actualizar.addActionListener(e -> recargar());
-        acciones.add(limpiar); acciones.add(guardar); acciones.add(eliminar); acciones.add(actualizar);
+        acciones.add(limpiar); acciones.add(guardar); acciones.add(modificar);
+        acciones.add(eliminar); acciones.add(actualizar);
         contenedor.add(acciones, BorderLayout.SOUTH);
         return contenedor;
     }
@@ -217,6 +220,14 @@ public class CrudPanel extends JPanel {
                     ? MensajesSQL.describir("No se pudo guardar", sql)
                     : ex.getMessage());
         }
+    }
+
+    private void actualizarSeleccionado() {
+        if (idSeleccionado == 0) {
+            error("Seleccione un registro para actualizar.");
+            return;
+        }
+        guardar();
     }
 
     private Object[] convertirEntradas() {

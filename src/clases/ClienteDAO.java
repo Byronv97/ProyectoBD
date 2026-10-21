@@ -53,7 +53,7 @@ public class ClienteDAO {
         try (Connection conexion = ConexionOracle.obtenerConexion();
                 PreparedStatement sentencia = conexion.prepareStatement(ACTUALIZAR)) {
             asignarCampos(sentencia, cliente);
-            sentencia.setLong(7, cliente.getIdCliente());
+            sentencia.setLong(6, cliente.getIdCliente());
             sentencia.executeUpdate();
         }
     }
