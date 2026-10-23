@@ -455,8 +455,12 @@ public class CompraFormularioPanel extends JPanel {
 
     private void limpiar() {
         idCompraSeleccionada = 0;
+        tabla.clearSelection();
+        proveedores.setSelectedItem(null);
+        empleados.setSelectedItem(null);
+        productos.setSelectedItem(null);
         factura.setText(""); fecha.setText(LocalDate.now().toString());
-        cantidad.setText("1"); descuento.setText("0"); actualizarCosto();
+        cantidad.setText("1"); descuento.setText("0"); costo.setText("");
     }
 
     private void error(String mensaje) {
