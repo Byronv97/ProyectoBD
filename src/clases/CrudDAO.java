@@ -71,7 +71,9 @@ public class CrudDAO {
             while (resultado.next()) {
                 Object[] fila = new Object[config.columnas().length];
                 for (int i = 0; i < fila.length; i++) {
-                    fila[i] = resultado.getObject(i + 1);
+                    fila[i] = i > 0 && config.campos()[i - 1].tipo() == CrudConfig.Tipo.FECHA
+                            ? resultado.getDate(i + 1)
+                            : resultado.getObject(i + 1);
                 }
                 filas.add(fila);
             }

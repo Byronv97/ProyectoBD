@@ -476,8 +476,12 @@ public class VentaFormularioPanel extends JPanel {
 
     private void limpiar() {
         idVentaSeleccionada = 0;
+        tabla.clearSelection();
+        clientes.setSelectedItem(null);
+        empleados.setSelectedItem(null);
+        productos.setSelectedItem(null);
         fecha.setText(LocalDate.now().toString()); cantidad.setText("1"); descuento.setText("0");
-        actualizarPrecio();
+        precio.setText("");
     }
 
     private void error(String mensaje) {
