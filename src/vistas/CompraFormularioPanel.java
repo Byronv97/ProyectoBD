@@ -34,11 +34,12 @@ import javax.swing.table.DefaultTableModel;
 /** Registro de compra completo en una sola pantalla. */
 public class CompraFormularioPanel extends JPanel {
 
+    private static final String NUMERO_FACTURA_POR_DEFECTO = "F001-00010";
     private final CrudDAO dao = new CrudDAO();
     private final JComboBox<CrudDAO.Opcion> proveedores = new JComboBox<>();
     private final JComboBox<CrudDAO.Opcion> empleados = new JComboBox<>();
     private final JComboBox<CrudDAO.ProductoOpcion> productos = new JComboBox<>();
-    private final JTextField factura = new JTextField(12);
+    private final JTextField factura = new JTextField(NUMERO_FACTURA_POR_DEFECTO, 12);
     private final JTextField fecha = new JTextField(LocalDate.now().toString(), 12);
     private final JTextField cantidad = new JTextField("1", 12);
     private final JTextField costo = new JTextField(12);
@@ -459,7 +460,7 @@ public class CompraFormularioPanel extends JPanel {
         proveedores.setSelectedItem(null);
         empleados.setSelectedItem(null);
         productos.setSelectedItem(null);
-        factura.setText(""); fecha.setText(LocalDate.now().toString());
+        factura.setText(NUMERO_FACTURA_POR_DEFECTO); fecha.setText(LocalDate.now().toString());
         cantidad.setText("1"); descuento.setText("0"); costo.setText("");
     }
 
